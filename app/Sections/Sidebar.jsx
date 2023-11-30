@@ -14,7 +14,7 @@ function Sidebar() {
         totalPendingTask, setTotalPendingTask, tasks } = useContext(MyContext)
 
   return (
-    <div className='flex flex-col flex-[0.13] p-6 border-r-[1px] border-[#2e2e2e]'>
+    <div className='flex md:flex-col flex-col lg:flex-[0.13] p-6 border-r-[1px] border-[#2e2e2e] '>
         <section className='w-full h-fit'>
             <div className='flex flex-row items-center gap-4'>
                 <div className='rounded-full flex justify-center items-center bg-red-400'><img className='rounded-full w-[40px] h-[40px]' src={user.photoURL}/></div>
@@ -22,35 +22,38 @@ function Sidebar() {
             </div>
         </section>
 
-        <section className='flex flex-col mt-[5rem] gap-5 h-full'>
-            <div onClick={() => renderTask()} className='h-7 w-full flex items-center hover:bg-[#1f1f22] px-2 py-4 rounded-md cursor-pointer'>
+        <section className='flex md:flex-col flex-row md:justify-evenly justify-start md:mt-[5rem] mt-8 gap-5 h-fit w-full'>
+            <div onClick={() => renderTask()} className='h-7 w-full flex items-center justify-center lg:justify-start hover:bg-[#1f1f22] px-2 py-4 rounded-md cursor-pointer'>
                 <p>All Tasks</p>
-                <span className="ml-auto">
-                {/* {tasks.length} */}
-                </span>
+                {/* <span className="ml-auto">
+                {tasks.length}
+                </span> */}
             </div>
 
-            <div onClick={() => renderCompletedTask()} className="h-7 w-full flex items-center hover:bg-[#1f1f22] px-2 py-4 rounded-md cursor-pointer">
+            <div onClick={() => renderCompletedTask()} className="h-7 w-full flex items-center justify-center lg:justify-start hover:bg-[#1f1f22] px-2 py-4 rounded-md cursor-pointer">
             <button className="flex items-center justify-center  text-[15px] h-fit py-[1px]  w-fit tracking-tight font-medium">
                     Completed 
             </button>
-            <span className=" ml-auto">
-            {/* {totalCompletedTask} */}
-            </span>
+            {/* <span className=" ml-auto">
+            {totalCompletedTask}
+            </span> */}
             </div>
 
-            <div onClick={() => renderIncompletedTask()} className="h-7 w-full flex items-center hover:bg-[#1f1f22] px-2 py-4 rounded-md cursor-pointer">
+            <div onClick={() => renderIncompletedTask()} className="h-7 w-full flex items-center justify-center lg:justify-start hover:bg-[#1f1f22] px-2 py-4 rounded-md cursor-pointer">
             <button className="flex items-center justify-center  text-[15px] h-fit py-[1px]  w-fit tracking-tight font-medium">
                     Ongoing 
                 </button>
-                <span className=" ml-auto">
-                    {/* {totalPendingTask} */}
-                </span>
+                {/* <span className=" ml-auto">
+                    {totalPendingTask}
+                </span> */}
             </div>
         </section>
 
-        <section className="mt-auto">
-            <button onClick={logOut} className="flex gap-2 items-center"><CiLogout />Sign Out</button>
+        <section className="md:mt-auto absolute top-8 right-2 md:bottom-2  md:left-0 h-fit w-fit">
+            <button onClick={logOut} className="py-1 px-3 flex items-center gap-2 rounded-sm text-sm md:text-base h-fit w-fit">
+            <CiLogout />
+                Sign Out
+            </button>
         </section>
     </div>
   )

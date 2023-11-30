@@ -23,11 +23,12 @@ function MainPanel() {
     <> 
       <EditModal show={showEditModal}/>
       <AddModal show={showAddModal}/>
-      <div className='flex-1 p-6 grid 2xl:grid-cols-5 grid-cols-2 col-auto gap-3'> 
+      <div className='flex-1 grid-cols-1 grid md:grid-cols-3 lg:grid-cols-3
+      xl:grid-cols-4 2xl:grid-cols-5 gap-4 p-5 h-fit mb-10'> 
         {renderedData}
       </div>
       
-      <button onClick={() => setShowAddModal(true)} className='absolute flex flex-row items-center justify-center gap-1 bottom-2 right-5 bg-[#007AFF] h-8 w-[100px] rounded-sm text-sm'>
+      <button onClick={() => setShowAddModal(true)} className='fixed flex flex-row items-center justify-center gap-1 bottom-2 right-5 bg-[#007AFF] h-8 w-[100px] rounded-sm text-sm'>
         <span className='text-2xl flex items-center justify-center'>+</span> {"  "} Add Task
       </button>
     </>
