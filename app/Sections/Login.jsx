@@ -7,7 +7,7 @@ function Login() {
   
     return (
     <div className='h-screen w-screen flex items-start pt-[250px]'>
-        <div className='mx-auto flex flex-col items-start max-w-[800px] gap-10 px-4'>
+        <div className='mx-auto flex flex-col items-start max-w-[800px] gap-10 px-5'>
             <h1 className='md:text-6xl text-5xl  font-semibold'>Welcome to Task Manager</h1>
             <p className='text-lg'>Convenient and easy way to organize and keep track of all your daily tasks.</p>
             <button className='bg-white text-black font-medium px-3 py-1.5 rounded-sm flex flex-row items-center justify-between gap-2' onClick={signUser}>
