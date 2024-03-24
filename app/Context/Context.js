@@ -139,8 +139,9 @@ export const MyContextProvider = ({ children }) => {
     // }, [totalTask])
 
     const addTask = () => {
+      console.log("Event called")
       const docRef = collection(db, 'tasks')
-      if(titleRef != " " && descRef != " "){
+      if(titleRef.current.value != "" && descRef.current.value != ""){
         addDoc(docRef, {
           title: titleRef.current.value, 
           desc: descRef.current.value, 
@@ -149,6 +150,8 @@ export const MyContextProvider = ({ children }) => {
           uid: uid
         })
         toast.success("Task added successfully!")
+        titleRef.current.value = ""
+        descRef.current.value = ""
       }
       else {
         toast.warn("Fields cannot be empty")

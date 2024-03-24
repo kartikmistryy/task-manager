@@ -1,12 +1,13 @@
 import React, { useContext } from 'react'
 import { MyContext } from '../Context/Context'
 
+
 function Login() {
     
     const {signUser} = useContext(MyContext)
   
     return (
-    <div className='h-screen w-screen flex items-start pt-[250px]'>
+    <div className='h-full w-screen flex items-start pt-[250px] flex-col'>
         <div className='mx-auto flex flex-col items-start max-w-[800px] gap-10 px-5'>
             <h1 className='md:text-6xl text-5xl  font-semibold'>Welcome to Task Manager</h1>
             <p className='text-lg'>Convenient and easy way to organize and keep track of all your daily tasks.</p>
