@@ -38,6 +38,7 @@ export const MyContextProvider = ({ children }) => {
     const [totalCompletedTask, setTotalCompletedTask] = useState(0)
     const [totalPendingTask, setTotalPendingTask] = useState(0)
 
+    const [activeTab, setActiveTab] = useState(0)
 
     const signUser = async() => {
       await signInWithPopup(auth, provider).then((data) => {
@@ -101,10 +102,12 @@ export const MyContextProvider = ({ children }) => {
     }
 
     const renderTask = () => {
+      setActiveTab(0)
       getData(uid)
     }
 
     const renderCompletedTask = () => {
+      setActiveTab(1)
       setRenderedData(tasks.map((task) => {
         if(task.data.isCompleted == true){
           return <Card entity={task}/>
@@ -116,6 +119,7 @@ export const MyContextProvider = ({ children }) => {
     }
 
     const renderIncompletedTask = () => {
+      setActiveTab(2)
       setRenderedData(tasks.map((task) => {
         if(task.data.isCompleted != true){
           return <Card entity={task}/>
@@ -170,6 +174,17 @@ export const MyContextProvider = ({ children }) => {
       getData(uid)
     }
 
+    const closeAddModal = () => {
+      setShowAddModal(false)
+      titleRef.current.value = ""
+      descRef.current.value = ""
+      isCompletedRef.current.checked = false
+    }
+
+    const closeEditModal = () => {
+      setShowEditModal(false)
+    }
+
     const logOut = () => {
       signOut(auth).then(() => {
         console.log("Signed out")
@@ -206,7 +221,9 @@ export const MyContextProvider = ({ children }) => {
       totalTask, setTotalTask,
       totalCompletedTask, setTotalCompletedTask,
       totalPendingTask, setTotalPendingTask,
-      tasks
+      tasks,
+      activeTab, setActiveTab,
+      closeAddModal, closeEditModal
       }}>
         {children}
     </MyContext.Provider>

@@ -9,7 +9,7 @@ function Login() {
     return (
     <div className='h-full w-screen flex items-start pt-[250px] flex-col'>
         <div className='mx-auto flex flex-col items-start max-w-[800px] gap-10 px-5'>
-            <h1 className='md:text-6xl text-5xl  font-semibold'>Welcome to Task Manager</h1>
+            <h1 className='md:text-6xl text-5xl  font-semibold'>Welcome to Task Master</h1>
             <p className='text-lg'>Convenient and easy way to organize and keep track of all your daily tasks.</p>
             <button className='bg-white text-black font-medium px-3 py-1.5 rounded-sm flex flex-row items-center justify-between gap-2' onClick={signUser}>
                 <span className='text-xl'><svg stroke="currentColor" fill="currentColor" stroke-width="0" version="1.1" x="0px" y="0px" viewBox="0 0 48 48" enable-background="new 0 0 48 48" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12

@@ -3,7 +3,7 @@
 import { MdRadioButtonChecked } from "react-icons/md";
 import { MdOutlineRadioButtonUnchecked } from "react-icons/md";
 import { CiLogout } from "react-icons/ci";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { MyContext } from "../Context/Context";
 
 
@@ -11,7 +11,9 @@ function Sidebar() {
 
     const { renderTask, renderIncompletedTask, renderCompletedTask, user, logOut, totalTask, setTotalTask,
         totalCompletedTask, setTotalCompletedTask,
-        totalPendingTask, setTotalPendingTask, tasks } = useContext(MyContext)
+        totalPendingTask, setTotalPendingTask, tasks, activeTab, setActiveTab } = useContext(MyContext)
+
+
 
   return (
     <div className='flex md:flex-col flex-col lg:flex-[0.13] p-6 border-r-[1px] border-[#2e2e2e] '>
@@ -22,16 +24,16 @@ function Sidebar() {
             </div>
         </section>
 
-        <section className='flex md:flex-col flex-row md:justify-evenly justify-start md:mt-[5rem] mt-8 gap-5 h-fit w-full'>
+        <section className='flex lg:flex-col flex-row md:justify-evenly justify-start md:mt-[5rem] mt-8 gap-5 h-fit w-full'>
             <div onClick={() => renderTask()} className='h-7 w-full flex items-center justify-center lg:justify-start hover:bg-[#1f1f22] px-2 py-4 rounded-md cursor-pointer'>
-                <p>All Tasks</p>
+                <p className={activeTab == 0 ? 'text-[#0A84FF]':"text-white"}>All Tasks { " " }({tasks.length})</p>
                 <span className="ml-auto">
-                <p className="text-[14px] text-center">({tasks.length})</p>
+                <p className={ `${activeTab == 0 ? "text-[#0A84FF]" : "text-white"} text-[14px] text-center`}></p>
                 </span>
             </div>
 
             <div onClick={() => renderCompletedTask()} className="h-7 w-full flex items-center justify-center lg:justify-start hover:bg-[#1f1f22] px-2 py-4 rounded-md cursor-pointer">
-            <button className="flex items-center justify-center  text-[15px] h-fit py-[1px]  w-fit tracking-tight font-medium">
+            <button  className={`flex items-center justify-center  text-[15px] h-fit py-[1px]  w-fit tracking-tight font-medium ${activeTab == 1 ? "text-[#0A84FF]" : "text-white" }`}>
                     Completed 
             </button>
             {/* <span className=" ml-auto">
@@ -40,7 +42,7 @@ function Sidebar() {
             </div>
 
             <div onClick={() => renderIncompletedTask()} className="h-7 w-full flex items-center justify-center lg:justify-start hover:bg-[#1f1f22] px-2 py-4 rounded-md cursor-pointer">
-            <button className="flex items-center justify-center  text-[15px] h-fit py-[1px]  w-fit tracking-tight font-medium">
+            <button className={`flex items-center justify-center  text-[15px] h-fit py-[1px]  w-fit tracking-tight font-medium ${activeTab == 2 ? "text-[#0A84FF]" : "text-white" }`}>
                     Ongoing 
                 </button>
                 {/* <span className=" ml-auto">
