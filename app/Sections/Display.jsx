@@ -11,7 +11,7 @@ function Display() {
     const {user} = useContext(MyContext)
 
     return (  
-    <div className='bg-[#0f0f0f] h-full min-h-screen  flex lg:flex-row flex-col'>
+    <div className='bg-[#111111] h-full min-h-screen  flex lg:flex-row flex-col'>
         {user && (
             <>
                 <Sidebar />

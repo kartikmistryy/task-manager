@@ -11,3 +11,16 @@
 body {
   color: #fff;
 }
+
+.card {
+  max-width: calc(screen - 20%);
+  max-height: calc(100% + 1em);
+  width:  calc(screen - 20%);
+  height: calc(100% + 1em);
+  max-height: 220px;
+}
+
+.sidebar {
+  max-width: calc(100% - 85%);
+  width: calc(100% - 85%);
+}

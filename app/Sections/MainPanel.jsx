@@ -23,8 +23,7 @@ function MainPanel() {
     <> 
       <EditModal show={showEditModal}/>
       <AddModal show={showAddModal}/>
-      <div className='flex-1 grid-cols-1 flex flex-col md:grid  md:grid-cols-3 lg:grid-cols-3
-      xl:grid-cols-4 2xl:grid-cols-5 gap-5 p-5 h-fit mb-10'> 
+      <div className='w-full p-5 h-fit mb-10 grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-y-10 gap-x-2'> 
         {renderedData}
       </div>
       

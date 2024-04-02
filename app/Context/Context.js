@@ -38,6 +38,8 @@ export const MyContextProvider = ({ children }) => {
     const [totalCompletedTask, setTotalCompletedTask] = useState(0)
     const [totalPendingTask, setTotalPendingTask] = useState(0)
 
+    const [currentTask, setCurrentTask] = useState({})
+
     const [activeTab, setActiveTab] = useState(0)
 
     const signUser = async() => {
@@ -59,6 +61,7 @@ export const MyContextProvider = ({ children }) => {
     const updateTask = () => {
       const docRef = doc(db, 'tasks', id)
       try {
+
           updateDoc(docRef,  {
             title: editTitleRef.current.value,
             desc: editDescRef.current.value,
@@ -78,6 +81,7 @@ export const MyContextProvider = ({ children }) => {
       catch(err){
           console.log(err)
       }
+      setActiveTab(0)
     }
 
     useEffect(() => {
@@ -130,18 +134,6 @@ export const MyContextProvider = ({ children }) => {
       }))
     }
 
-    // useEffect(() => {
-    //   getData(uid)
-    //   tasks.filter((task) => {
-    //     if(task.data.isCompleted == true){
-    //       setTotalCompletedTask(prev => prev + 1)
-    //     }
-    //     else{
-    //       setTotalPendingTask(prev => prev + 1)
-    //     }
-    //   })
-    // }, [totalTask])
-
     const addTask = () => {
       console.log("Event called")
       const docRef = collection(db, 'tasks')
@@ -165,13 +157,14 @@ export const MyContextProvider = ({ children }) => {
       isCompletedRef.current.checked = false
       getData(uid)
       setShowAddModal(false)
-
       setTotalTask(prev => prev + 1)
+      setActiveTab(0)
     }
 
     const removeTask = async(id) => {
       await deleteDoc(doc(db, 'tasks', id))
       getData(uid)
+      setActiveTab(0)
     }
 
     const closeAddModal = () => {
@@ -223,7 +216,8 @@ export const MyContextProvider = ({ children }) => {
       totalPendingTask, setTotalPendingTask,
       tasks,
       activeTab, setActiveTab,
-      closeAddModal, closeEditModal
+      closeAddModal, closeEditModal,
+      currentTask, setCurrentTask
       }}>
         {children}
     </MyContext.Provider>
