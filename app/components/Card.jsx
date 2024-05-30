@@ -10,11 +10,11 @@ function Card({ entity }) {
     const { startEdit,removeTask, setCurrentTask } = useContext(MyContext)
 
   return (
-    <div className='card flex flex-col bg-[#0f0f0f] w-full py-4 px-4 rounded-md border-[0.5px] border-[#202020] shadow-md shadow-[#0f0f0f]'
+    <div className='card flex flex-col bg-[#0e0e0e] w-full py-4 px-4 rounded-md border-[0.5px] border-[#343434] shadow-md shadow-[#0f0f0f]'
     onClick={() => setCurrentTask(entity)}> 
         <div className='flex flex-col'>
-            <h1 className="text-lg font-medium">{entity.data.title}</h1>
-            <p className="text-[15px] mt-1.5 max-h-[70px]text-gray-300 overflow-hidden">
+            <h1 className="text-lg font-medium text-[#fafafa]">{entity.data.title}</h1>
+            <p className="text-[14px] mt-1.5 max-h-[70px]text-gray-300 overflow-hidden text-gray-300">
                 {entity.data.desc.length >= 100 ? entity.data.desc.slice(0, 110) + ".." : entity.data.desc}
             </p>
         </div>
@@ -22,10 +22,10 @@ function Card({ entity }) {
             <div>
 
                 {!entity.data.isCompleted 
-                ? <button className="flex items-center justify-center bg-[#3f3b28] text-[#faf60e] text-[13px] h-fit leading-[24px] px-3 py-0.5 rounded-full tracking-tight font-normal">
+                ? <button className="flex items-center justify-center bg-[rgba(253,223,153,0.18)] text-[#fddc96] text-[12px] h-fit leading-[24px] px-[7px] rounded-full tracking-tight font-medium">
                     Ongoing
                 </button>
-                 : <button className="flex items-center justify-center bg-[#263b2d] text-[#1ddb8c] text-[13px] h-fit leading-[24px] px-3 py-0.5 rounded-full tracking-tight font-normal">
+                 : <button className="flex items-center justify-center bg-[rgba(158,255,187,0.18)] text-[#99ffb6] text-[12px] h-fit leading-[24px] px-[7px] rounded-full tracking-tight font-medium">
                     Completed
                 </button>}
             </div>

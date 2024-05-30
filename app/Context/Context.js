@@ -10,7 +10,7 @@ import { auth, provider } from '../Firebase/Firebase'
 import {signInWithPopup, signOut} from 'firebase/auth'
 import uuid from 'react-uuid'
 import {useAuthState} from 'react-firebase-hooks/auth'
-import {toast} from 'react-toast'
+import {ToastContainer, toast} from 'react-toast'
 
 export const MyContext = createContext()
 
@@ -61,7 +61,6 @@ export const MyContextProvider = ({ children }) => {
     const updateTask = () => {
       const docRef = doc(db, 'tasks', id)
       try {
-
           updateDoc(docRef,  {
             title: editTitleRef.current.value,
             desc: editDescRef.current.value,
@@ -82,6 +81,7 @@ export const MyContextProvider = ({ children }) => {
           console.log(err)
       }
       setActiveTab(0)
+      toast.info('Task Updated');
     }
 
     useEffect(() => {
@@ -165,6 +165,7 @@ export const MyContextProvider = ({ children }) => {
       await deleteDoc(doc(db, 'tasks', id))
       getData(uid)
       setActiveTab(0)
+      toast.error("Task deleted")
     }
 
     const closeAddModal = () => {
@@ -217,7 +218,7 @@ export const MyContextProvider = ({ children }) => {
       tasks,
       activeTab, setActiveTab,
       closeAddModal, closeEditModal,
-      currentTask, setCurrentTask
+      currentTask, setCurrentTask,ToastContainer, toast
       }}>
         {children}
     </MyContext.Provider>

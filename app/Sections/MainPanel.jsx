@@ -12,10 +12,8 @@ import AddModal from '../components/AddModal'
 
 function MainPanel() {
 
-  const titleRef = useRef(null)
-  const descRef = useRef(null)
 
-  const { tasks, showEditModal,renderedData, showAddModal, setShowAddModal } = useContext(MyContext)
+  const { showEditModal,renderedData, showAddModal, setShowAddModal, toast, ToastContainer } = useContext(MyContext)
 
 
 
@@ -26,8 +24,8 @@ function MainPanel() {
       <div className='w-full p-5 h-fit mb-10 grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-y-10 gap-x-2'> 
         {renderedData}
       </div>
-      
-      <button onClick={() => setShowAddModal(true)} className='fixed flex flex-row items-center justify-center gap-1 bottom-4 right-5 bg-[#007AFF] h-8 w-[100px] rounded-sm text-sm'>
+      <ToastContainer store={toast}/>
+      <button onClick={() => setShowAddModal(true)} className='fixed flex flex-row items-center justify-center gap-1 bottom-4 right-5 bg-[#2563eb] h-8 w-[100px] rounded-sm text-sm'>
         <span className='text-2xl flex items-center justify-center'>+</span> {"  "} Add Task
       </button>
     </>

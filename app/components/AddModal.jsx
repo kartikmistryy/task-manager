@@ -6,18 +6,22 @@ function AddModal() {
     const {showAddModal, setShowAddModal, titleRef, descRef, isCompletedRef, addTask, closeAddModal } = useContext(MyContext)
 
   return (
-    <div style={{display: showAddModal ? "flex" : "none"}} className='h-screen w-screen absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 justify-center items-center'>
-        <div className='flex flex-col w-[420px] h-[480px] gap-6 bg-[#1f1f22] p-4 rounded-xl'>
-            <h1 className='text-center font-semibold text-2xl'>New Task</h1>
+    <div style={{display: showAddModal ? "flex" : "none"}} className='h-screen w-screen absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 justify-center items-center backdrop-blur-sm'>
+        <div className='flex flex-col w-[420px] h-[530px] gap-4 bg-[#030303] p-4 rounded-xl border-[1px] border-[#2e2e2e] shadow-md shadow-[#1e1e1e]'>
+            <h1 className='text-center font-semibold text-lg'>New Task</h1>
             <div>
-                <input className='w-full bg-transparent border-b-[1px] border-[#2e2e2e] px-2 h-7 outline-none text-white placeholder:text-white text-lg' ref={titleRef} type="text" placeholder='Title'/>
+                <label htmlFor="title">Title</label>
+                <input className='mt-1 w-full bg-transparent border-[1px] border-[#2e2e2e] p-2 h-fit outline-none text-gray-100  rounded-md placeholder:text-white text-sm' ref={titleRef} 
+                placeholder="Title" type="text" />
             </div>
             <div>
-                <textarea className='w-full h-full min-h-[190px] bg-transparent border-b-[1px] border-[#2e2e2e] px-2 outline-none text-white placeholder:text-white text-lg resize-none' ref={descRef} type="text" placeholder='Enter text...' />
+                <label htmlFor="description">Description</label>
+                <textarea className='w-full h-full min-h-[190px] bg-transparent border-[1px] border-[#2e2e2e] p-2 outline-none text-white rounded-md  mt-1 placeholder:text-gray-300 text-sm resize-none' ref={descRef} 
+                placeholder="Brief description ..." type="text"/>
             </div>
-            <div className='flex flex-row items-center gap-3 pl-2'>
+            <div className='flex flex-row items-center gap-3 pl-2 mt-4'>
                 <input className='w-4 h-4' ref={isCompletedRef} type="checkbox"/>
-                <label htmlFor="">Completed</label>
+                <label htmlFor="" className='text-sm'>Completed</label>
             </div>
             <div className='flex flex-col gap-4'>
             <button className='bg-blue-500 h-8 rounded-sm text-base font-medium' onClick={() => addTask()}>Add</button>
