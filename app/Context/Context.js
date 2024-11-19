@@ -26,6 +26,7 @@ export const MyContextProvider = ({ children }) => {
     const editTitleRef = useRef(null)
     const editDescRef = useRef(null)
     const editIsCompletedRef = useRef(null)
+    const editDeadlineRef = useRef(null)
 
     const titleRef = useRef(null) 
     const descRef = useRef(null) 
@@ -50,12 +51,23 @@ export const MyContextProvider = ({ children }) => {
     }
 
     const startEdit = (entity) => {
-      editTitleRef.current.value = entity.data.title
-      editDescRef.current.value = entity.data.desc
-      editIsCompletedRef.current.checked = entity.data.isCompleted
-      setShowEditModal(true)
-      setId(entity.id)
-      setUid(entity.data.uid)
+      console.log(entity);
+
+      // Extract day, month, and year from "DD-MM-YYYY"
+      const [day, month, year] = entity.data.date.split('-').map(Number);
+    
+      // Rearrange to "YYYY-MM-DD" format for the date input
+      const formattedDate = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    
+      // Set the values of the inputs
+      editTitleRef.current.value = entity.data.title;
+      editDescRef.current.value = entity.data.desc;
+      editIsCompletedRef.current.checked = entity.data.isCompleted;
+      editDeadlineRef.current.value = formattedDate; // Correct format for date input
+    
+      // Show the edit modal and set the task ID
+      setShowEditModal(true);
+      setId(entity.id);
     }
 
     const updateTask = () => {
@@ -135,19 +147,26 @@ export const MyContextProvider = ({ children }) => {
     }
 
     const addTask = () => {
-      console.log("Event called")
       const docRef = collection(db, 'tasks')
+      const dateData = new Date()
+      const day = dateData.getDate()
+      const month = dateData.getMonth()
+      const year = dateData.getFullYear()
       if(titleRef.current.value != "" && descRef.current.value != ""){
         addDoc(docRef, {
           title: titleRef.current.value, 
           desc: descRef.current.value, 
           isCompleted: isCompletedRef.current.checked, 
           id: uuid(),
-          uid: uid
+          uid: uid,
+          // date: `${day}-${month}-${year}`
+          date: `${11}-${12}-${2024}`
         })
         toast.success("Task added successfully!")
         titleRef.current.value = ""
         descRef.current.value = ""
+        const x = Date.now()
+        console.log(Date.parse(x))
       }
       else {
         toast.warn("Fields cannot be empty")
@@ -198,7 +217,7 @@ export const MyContextProvider = ({ children }) => {
       tasks, setTasks,
        getData,
       showEditModal, setShowEditModal,
-      editDescRef, editTitleRef, editIsCompletedRef, updateTask,
+      editDescRef, editTitleRef, editIsCompletedRef,editDeadlineRef, updateTask,
       startEdit, 
       id, setId, 
       renderedData, setRenderedData, 

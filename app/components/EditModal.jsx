@@ -4,7 +4,7 @@ import { collection } from 'firebase/firestore'
 
 function EditModal() {
 
-    const {showEditModal, setShowEditModal, editDescRef, editTitleRef, editIsCompletedRef, updateTask, id, setId,closeEditModal} = useContext(MyContext)
+    const {showEditModal, setShowEditModal, editDescRef, editTitleRef, editIsCompletedRef, editDeadlineRef, updateTask, id, setId,closeEditModal} = useContext(MyContext)
 
   return (
     <div style={{display: showEditModal ? "flex" : "none"}} className='h-screen w-screen absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 justify-center items-center backdrop-blur-sm'>
@@ -22,6 +22,9 @@ function EditModal() {
             <div className='flex flex-row items-center gap-3 pl-2 mt-4'>
                 <input className='w-4 h-4' ref={editIsCompletedRef} type="checkbox"/>
                 <label htmlFor="" className='text-sm'>Completed</label>
+            </div>
+            <div>
+                <input type="date" ref={editDeadlineRef}/>
             </div>
             <div className='flex flex-col gap-4'>
             <button className='bg-blue-500 h-8 rounded-sm text-base font-medium' onClick={updateTask}>Edit</button>

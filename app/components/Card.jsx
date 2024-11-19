@@ -2,7 +2,7 @@ import { MdRadioButtonChecked } from "react-icons/md";
 import { MdRadioButtonUnchecked } from "react-icons/md";
 import { RiEditFill } from "react-icons/ri";
 import {AiOutlineDelete} from 'react-icons/ai'
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { MyContext } from "../Context/Context";
 
 function Card({ entity }) {
@@ -20,7 +20,6 @@ function Card({ entity }) {
         </div>
         <div className="flex flex-row justify-between items-center mt-auto mb-1 border-t-[1px] h-8 border-[#222222] pt-4">
             <div>
-
                 {!entity.data.isCompleted 
                 ? <button className="flex items-center justify-center bg-[rgba(253,223,153,0.18)] text-[#fddc96] text-[12px] h-fit leading-[24px] px-[7px] rounded-full tracking-tight font-medium">
                     Ongoing

@@ -15,7 +15,7 @@ function Login() {
   
     return (
     <div className='h-screen w-screen flex items-start justify-start flex-col py-36 px-8 overflow-hidden'>
-        <div className='mx-auto flex flex-col items-start max-w-[800px] gap-4 px-5 h-full'>
+        <div className='mx-auto flex flex-col items-start max-w-[800px] gap-4 px-5 h-full mb-10'>
             <h1 className='md:text-6xl text-5xl  font-semibold'>Welcome to Task Master</h1>
             <p className='text-lg text-gray-300'>Convenient and easy way to organize and keep track of all your daily tasks.</p>
             <button className='bg-white text-black font-medium px-3 py-1.5 rounded-sm flex flex-row items-center justify-between gap-2 mt-6' onClick={signUser}>
