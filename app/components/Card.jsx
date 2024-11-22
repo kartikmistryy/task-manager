@@ -4,6 +4,7 @@ import { RiEditFill } from "react-icons/ri";
 import {AiOutlineDelete} from 'react-icons/ai'
 import { useContext, useEffect, useRef } from "react";
 import { MyContext } from "../Context/Context";
+import { MdEvent } from "react-icons/md";
 
 function Card({ entity }) {
 
@@ -19,7 +20,7 @@ function Card({ entity }) {
             </p>
         </div>
         <div className="flex flex-row justify-between items-center mt-auto mb-1 border-t-[1px] h-8 border-[#222222] pt-4">
-            <div>
+            <div className="flex flex-row items-center gap-2">
                 {!entity.data.isCompleted 
                 ? <button className="flex items-center justify-center bg-[rgba(253,223,153,0.18)] text-[#fddc96] text-[12px] h-fit leading-[24px] px-[7px] rounded-full tracking-tight font-medium">
                     Ongoing
@@ -27,6 +28,7 @@ function Card({ entity }) {
                  : <button className="flex items-center justify-center bg-[rgba(158,255,187,0.18)] text-[#99ffb6] text-[12px] h-fit leading-[24px] px-[7px] rounded-full tracking-tight font-medium">
                     Completed
                 </button>}
+                <span className="flex flex-row items-center justify-start gap-1 text-sm"><MdEvent/>{entity.data.date}</span>
             </div>
             <div className="flex flex-row gap-3 items-center justify-center text-base">
                 <RiEditFill id={entity.id} onClick={() => startEdit(entity)}/>

@@ -24,3 +24,7 @@ body {
   max-width: calc(100% - 85%);
   width: calc(100% - 85%);
 }
+
+input::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}

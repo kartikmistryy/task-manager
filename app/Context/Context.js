@@ -31,6 +31,7 @@ export const MyContextProvider = ({ children }) => {
     const titleRef = useRef(null) 
     const descRef = useRef(null) 
     const isCompletedRef = useRef(null) 
+    const deadlineRef = useRef(null)
 
     const [id, setId] = useState("")
     const [uid, setUid] = useState(null)
@@ -46,7 +47,12 @@ export const MyContextProvider = ({ children }) => {
     const signUser = async() => {
       await signInWithPopup(auth, provider).then((data) => {
         getData(data.user.uid)
-
+        console.log(data.user)
+        const docRef = collection(db, 'users')
+        addDoc(docRef, {
+          email: data.user.email,
+          uid: data.user.uid
+        })
       })
     }
 
@@ -54,7 +60,7 @@ export const MyContextProvider = ({ children }) => {
       console.log(entity);
 
       // Extract day, month, and year from "DD-MM-YYYY"
-      const [day, month, year] = entity.data.date.split('-').map(Number);
+      const [year, month, day] = entity.data.date.split('-').map(Number);
     
       // Rearrange to "YYYY-MM-DD" format for the date input
       const formattedDate = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
@@ -77,6 +83,7 @@ export const MyContextProvider = ({ children }) => {
             title: editTitleRef.current.value,
             desc: editDescRef.current.value,
             isCompleted: editIsCompletedRef.current.checked,
+            date: editDeadlineRef.current.value
           })
           setTasks(tasks)
           setShowEditModal(false)
@@ -148,10 +155,10 @@ export const MyContextProvider = ({ children }) => {
 
     const addTask = () => {
       const docRef = collection(db, 'tasks')
-      const dateData = new Date()
-      const day = dateData.getDate()
-      const month = dateData.getMonth()
-      const year = dateData.getFullYear()
+      // const dateData = new Date()
+      // const day = dateData.getDate()
+      // const month = dateData.getMonth()
+      // const year = dateData.getFullYear()
       if(titleRef.current.value != "" && descRef.current.value != ""){
         addDoc(docRef, {
           title: titleRef.current.value, 
@@ -159,14 +166,12 @@ export const MyContextProvider = ({ children }) => {
           isCompleted: isCompletedRef.current.checked, 
           id: uuid(),
           uid: uid,
-          // date: `${day}-${month}-${year}`
-          date: `${11}-${12}-${2024}`
+          date: deadlineRef.current.value
         })
         toast.success("Task added successfully!")
         titleRef.current.value = ""
         descRef.current.value = ""
-        const x = Date.now()
-        console.log(Date.parse(x))
+        deadlineRef.current.value = ""
       }
       else {
         toast.warn("Fields cannot be empty")
@@ -223,7 +228,7 @@ export const MyContextProvider = ({ children }) => {
       renderedData, setRenderedData, 
       getData, 
       showAddModal, setShowAddModal,
-      titleRef, descRef, isCompletedRef,
+      titleRef, descRef, isCompletedRef,deadlineRef,
       addTask,
       removeTask,
       renderTask, renderIncompletedTask, renderCompletedTask,

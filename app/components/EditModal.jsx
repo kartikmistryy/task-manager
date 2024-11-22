@@ -8,7 +8,7 @@ function EditModal() {
 
   return (
     <div style={{display: showEditModal ? "flex" : "none"}} className='h-screen w-screen absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 justify-center items-center backdrop-blur-sm'>
-        <div className='flex flex-col w-[420px] h-[530px] gap-4 bg-[#030303] p-4 rounded-xl border-[1px] border-[#2e2e2e] shadow-md shadow-[#1e1e1e]'>
+        <div className='flex flex-col w-[420px] h-[560px] gap-4 bg-[#030303] p-4 rounded-xl border-[1px] border-[#2e2e2e] shadow-md shadow-[#1e1e1e]'>
             <h1 className='text-center font-semibold text-lg'>Edit Task</h1>
             <div>
                 <label htmlFor="title">Title</label>
@@ -24,7 +24,10 @@ function EditModal() {
                 <label htmlFor="" className='text-sm'>Completed</label>
             </div>
             <div>
-                <input type="date" ref={editDeadlineRef}/>
+                <input
+                className='bg-transparent w-fit gap-0' 
+                type="date" 
+                ref={editDeadlineRef}/>
             </div>
             <div className='flex flex-col gap-4'>
             <button className='bg-blue-500 h-8 rounded-sm text-base font-medium' onClick={updateTask}>Edit</button>
